@@ -1,0 +1,7 @@
+host: github-demo.johannes-jahn.com
+images:
+  backend:
+    name: johannesjahn/github-demo
+    version: 0.0.1
+tls:
+  secretName: github-demo-tls

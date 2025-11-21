@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "github-demo"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: github-demo
+  template:
+    metadata:
+      labels:
+        app: github-demo
+    spec:
+      containers:
+        - name: github-demo
+          image: "{{ .Values.images.backend.name }}:{{ .Values.images.backend.version }}"
+          ports:
+            - containerPort: 3000
+          readinessProbe:
+            httpGet:
+              path: /joke
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 10
